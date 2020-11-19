@@ -13,6 +13,19 @@ export function login(username, password, code, uuid) {
   })
 }
 
+export function sign(username, password, code, uuid) {
+  return request({
+    url: 'auth/sign',
+    method: 'post',
+    data: {
+      username,
+      password,
+      code,
+      uuid
+    }
+  })
+}
+
 export function getInfo() {
   return request({
     url: 'auth/info',
