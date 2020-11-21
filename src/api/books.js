@@ -24,4 +24,11 @@ export function edit(data) {
   })
 }
 
-export default { add, edit, del }
+export function getClass() {
+  return request({
+    url: 'api/bookClassification',
+    method: 'get'
+  })
+}
+
+export default { add, edit, del, getClass }

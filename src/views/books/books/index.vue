@@ -20,35 +20,31 @@
             <el-input v-model="form.introduction" style="width: 370px;" />
           </el-form-item>
           <el-form-item label="发布年份">
-            <el-date-picker
-              v-model="form.publisherYear"
-              type="date"
-              placeholder="选择日期"
-              default-value="2010-10-01"
-            />
-            <!--<el-input v-model="form.publisherYear" style="width: 370px;" />-->
+            <el-input v-model="form.publisherYear" style="width: 370px;" />
           </el-form-item>
           <el-form-item label="作者摘要/介绍">
             <el-input v-model="form.authorAbstract" style="width: 370px;" />
-          </el-form-item>
-          <el-form-item label="isbn">
-            <el-radio v-model="form.isbn" label="true">是</el-radio>
-            <el-radio v-model="form.isbn" label="false">不是</el-radio>
           </el-form-item>
           <el-form-item label="图书图片路径">
             <!--图片上传-->
             <el-input v-model="form.picturePath" style="width: 370px;" />
           </el-form-item>
-          <el-form-item label="分类号">
-            <!--获取分类-->
-            <el-input v-model="form.classificationSymbol" style="width: 370px;" />
+          <el-form-item label="分类">
+            <el-select v-model="form.classificationSymbol" placeholder="请选择">
+              <el-option
+                v-for="item in book_classs"
+                :key="item.classificationSymbol"
+                :label="item.classificationName"
+                :value="item.classificationSymbol"
+              />
+            </el-select>
           </el-form-item>
           <el-form-item label="图书数量">
-            <el-input v-model="form.num" style="width: 370px;" />
+            <el-input v-model="form.num" type="number" style="width: 370px;" />
           </el-form-item>
           <el-form-item label="是否启用" prop="isEnable">
-            <el-radio v-model="form.isEnable" label="1">启用</el-radio>
-            <el-radio v-model="form.isEnable" label="0">不启用</el-radio>
+            <el-radio v-model="form.isEnable" :label="true">启用</el-radio>
+            <el-radio v-model="form.isEnable" :label="false">不启用</el-radio>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -66,11 +62,13 @@
         <el-table-column prop="introduction" label="详情" />
         <el-table-column prop="publisherYear" label="发布年份" />
         <el-table-column prop="authorAbstract" label="作者摘要/介绍" />
-        <el-table-column prop="isbn" label="isbn" />
+        <!--<el-table-column prop="isbn" label="isbn" />-->
         <el-table-column prop="picturePath" label="图书图片路径" />
         <el-table-column prop="classificationSymbol" label="分类号" />
         <el-table-column prop="num" label="图书数量" />
-        <el-table-column prop="isEnable" label="是否启用 1启用 0未启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column v-permission="['admin','book:edit','book:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation
@@ -87,7 +85,7 @@
 </template>
 
 <script>
-import crudBook from '@/api/book'
+import crudBook from '@/api/books'
 import CRUD, { presenter, header, form, crud } from '@crud/crud'
 import rrOperation from '@crud/RR.operation'
 import crudOperation from '@crud/CRUD.operation'
@@ -117,7 +115,14 @@ export default {
         isEnable: [
           { required: true, message: '是否启用 1启用 0未启用不能为空', trigger: 'blur' }
         ]
-      }}
+      },
+      book_classs: []
+    }
+  },
+  mounted() {
+    crudBook.getClass().then(res => {
+      this.book_classs = res.content
+    })
   },
   methods: {
     // 钩子：在获取表格数据之前执行，false 则代表不获取数据
