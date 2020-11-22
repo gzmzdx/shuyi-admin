@@ -85,7 +85,7 @@ export default {
   components: { pagination, crudOperation, rrOperation, udOperation },
   mixins: [presenter(), header(), form(defaultForm), crud()],
   cruds() {
-    return CRUD({ title: '图书馆', url: 'api/library', sort: 'libraryId,desc', crudMethod: { ...crudLibrary }})
+    return CRUD({ title: '图书馆', idField: 'libraryId', url: 'api/library', sort: 'libraryId,desc', crudMethod: { ...crudLibrary }})
   },
   data() {
     return {
