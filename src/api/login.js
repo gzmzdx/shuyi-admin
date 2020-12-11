@@ -1,22 +1,8 @@
 import request from '@/utils/request'
 
-export function login(username, password, rePassword, code, uuid) {
+export function login(username, password, code, uuid) {
   return request({
     url: 'auth/login',
-    method: 'post',
-    data: {
-      username,
-      password,
-      rePassword,
-      code,
-      uuid
-    }
-  })
-}
-
-export function sign(username, password, code, uuid) {
-  return request({
-    url: 'auth/sign',
     method: 'post',
     data: {
       username,
