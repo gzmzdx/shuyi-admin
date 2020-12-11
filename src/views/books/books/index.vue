@@ -63,7 +63,7 @@
         <el-table-column prop="publisherYear" label="发布年份" />
         <el-table-column prop="authorAbstract" label="作者摘要/介绍" />
         <!--<el-table-column prop="isbn" label="isbn" />-->
-        <el-table-column prop="picturePath" label="图书图片路径" />
+        <el-table-column prop="picturePath" label="图书图片路径" width="100" />
         <el-table-column prop="classificationSymbol" label="分类号" />
         <el-table-column prop="num" label="图书数量" />
         <el-table-column prop="isEnable" label="是否启用">
