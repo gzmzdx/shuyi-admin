@@ -47,8 +47,8 @@
         <el-table-column prop="type" label="图书馆类型">
           <template slot-scope="scope">{{ scope===0?"官方图书馆":"个人图书馆" }}</template>
         </el-table-column>
-        <el-table-column prop="ownerId" label="图书馆所有者的编号 对应reader_id" />
-        <el-table-column prop="userId" label="图书馆后台管理账号的编号对应user_id" />
+        <el-table-column prop="ownerId" label="所有者" />
+        <el-table-column prop="userId" label="管理账号" />
         <el-table-column prop="address" label="图书馆地址" />
         <el-table-column prop="latitude" label="维度" />
         <el-table-column prop="longitude" label="经度" />
