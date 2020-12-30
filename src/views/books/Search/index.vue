@@ -21,8 +21,8 @@
           </el-form-item>
           <el-form-item label="是否启用" prop="isEnable">
             <template>
-              <el-radio v-model="form.isEnable" label="true">是</el-radio>
-              <el-radio v-model="form.isEnable" label="false">否</el-radio>
+              <el-radio v-model="form.isEnable" :label="true">是</el-radio>
+              <el-radio v-model="form.isEnable" :label="false">否</el-radio>
             </template>
           </el-form-item>
         </el-form>
@@ -42,7 +42,9 @@
           </template>
         </el-table-column>
         <el-table-column prop="content" label="搜索关键词" />
-        <el-table-column prop="isEnable" label="是否启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope.row.isEnable?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column v-permission="['admin','searchRecord:edit','searchRecord:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation

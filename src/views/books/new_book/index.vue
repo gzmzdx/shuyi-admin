@@ -60,17 +60,19 @@
             <p v-text="sensitiveWord">{{ scope.row.summary }}</p>
           </template>
         </el-table-column>
-        <el-table-column prop="introduction" label="详情" />
+        <el-table-column show-overflow-tooltip prop="introduction" label="详情" />
         <el-table-column show-overflow-tooltip prop="publisherYear" label="发布年份" width="85" />
         <el-table-column show-overflow-tooltip prop="authorAbstract" label="作者摘要" />
-        <el-table-column prop="picturePath" label="图书图片路径" width="100" align="center">
+        <el-table-column prop="picturePath" label="封面" width="100" align="center">
           <template slot-scope="scope">
-            <a :href="scope.row.picturePath" target="_blank" class="buttonText" style="color: blue;font-size: 15px">图片</a>
+            <img height="60" :src="scope.row.picturePath" alt="">
           </template>
         </el-table-column>
         <el-table-column prop="classificationSymbol" label="分类号" />
         <el-table-column prop="num" label="图书数量" />
-        <el-table-column prop="isEnable" label="是否启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope.row.isEnable?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column v-permission="['admin','book:edit','book:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation

@@ -38,7 +38,9 @@
         <el-table-column prop="classificationName" label="分类名" />
         <el-table-column prop="classificationSymbol" label="分类号" />
         <el-table-column prop="parentClassificationId" label="父类" />
-        <el-table-column prop="isEnable" label="是否启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope.row.isEnable?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column v-permission="['admin','bookClassification:edit','bookClassification:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation

@@ -59,12 +59,12 @@
         <el-table-column show-overflow-tooltip prop="bookName" label="书名" />
         <el-table-column show-overflow-tooltip prop="author" label="图书作者" />
         <el-table-column show-overflow-tooltip prop="summary" label="简介" />
-        <el-table-column prop="introduction" label="详情" />
-        <el-table-column prop="publisherYear" label="发布年份" />
-        <el-table-column prop="authorAbstract" label="作者摘要/介绍" />
-        <el-table-column prop="picturePath" label="图书图片路径" width="100" >
+        <el-table-column show-overflow-tooltip prop="introduction" label="详情" />
+        <el-table-column show-overflow-tooltip prop="publisherYear" label="发布年份" />
+        <el-table-column show-overflow-tooltip prop="authorAbstract" label="作者摘要/介绍" />
+        <el-table-column prop="picturePath" label="封面" width="100" >
           <template slot-scope="scope">
-            <a :href="scope.row.picturePath" target="_blank" class="buttonText" style="color: blue;font-size: 15px">图片</a>
+            <img height="60" :src="scope.row.picturePath" alt="">
           </template>
         </el-table-column>
         <el-table-column prop="classificationSymbol" label="分类号" />

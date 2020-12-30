@@ -112,7 +112,9 @@
           </template>
         </el-table-column>
         <el-table-column prop="sex" label="性别" />
-        <el-table-column prop="isEnable" label="是否启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope.row.isEnable?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column v-permission="['admin','reader:edit','reader:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
             <udOperation

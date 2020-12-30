@@ -7,9 +7,9 @@
       <!--表单组件-->
       <el-dialog :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
         <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
-          <el-form-item label="心得编号" prop="bookReviewId">
+          <!--<el-form-item label="心得编号" prop="bookReviewId">
             <el-input v-model="form.bookReviewId" style="width: 370px;" />
-          </el-form-item>
+          </el-form-item>-->
           <el-form-item label="读者编号" prop="readerId">
             <el-input v-model="form.readerId" style="width: 370px;" />
           </el-form-item>
@@ -27,8 +27,8 @@
           </el-form-item>
           <el-form-item label="是否启用" prop="isEnable">
             <template>
-              <el-radio v-model="form.isEnable" label="true">是</el-radio>
-              <el-radio v-model="form.isEnable" label="false">否</el-radio>
+              <el-radio v-model="form.isEnable" :label="true">是</el-radio>
+              <el-radio v-model="form.isEnable" :label="false">否</el-radio>
             </template>
           </el-form-item>
           <el-form-item label="审核状态" prop="type">
@@ -62,7 +62,9 @@
         </el-table-column>
         <el-table-column prop="likeNum" label="喜欢(点赞)数量" />
         <el-table-column prop="bookId" label="图书编号" />
-        <el-table-column prop="isEnable" label="是否启用" />
+        <el-table-column prop="isEnable" label="是否启用">
+          <template slot-scope="scope">{{ scope.row.isEnable?"启用":"未启用" }}</template>
+        </el-table-column>
         <el-table-column prop="type" label="审核状态" />
         <el-table-column v-permission="['admin','bookReview:edit','bookReview:del']" label="操作" width="150px" align="center">
           <template slot-scope="scope">
